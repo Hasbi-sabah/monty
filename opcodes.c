@@ -13,6 +13,7 @@ void divi(unsigned int line_number, data_t *data);
 void mul(unsigned int line_number, data_t *data);
 void mod(unsigned int line_number, data_t *data);
 void pchar(unsigned int line_number, data_t *data);
+void pstr(unsigned int line_number, data_t *data);
 /**
  *
  *
@@ -274,7 +275,6 @@ void mod(unsigned int line_number, data_t *data)
 {
 	int temp;
 
-	(void) data;
 	if (_len(data->stack) < 2)
 	{
 		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
@@ -307,4 +307,17 @@ void pchar(unsigned int line_number, data_t *data)
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", data->stack->n);	
+}
+void pstr(unsigned int line_number, data_t *data)
+{
+	stack_t *h;
+
+	(void) line_number;
+	for (h = data->stack; h; h = h->next)
+	{
+		if (h->n <= 0 || h->n > 127)
+			break;
+		printf("%c", h->n);
+	}
+	printf("\n");
 }

@@ -96,5 +96,6 @@ void divi(unsigned int line_number, data_t *data);
 void mul(unsigned int line_number, data_t *data);
 void mod(unsigned int line_number, data_t *data);
 void pchar(unsigned int line_number, data_t *data);
+void pstr(unsigned int line_number, data_t *data);
 
 #endif
