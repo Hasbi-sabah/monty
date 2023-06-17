@@ -17,7 +17,8 @@ void interpreter(data_t *data)
 		{"pint", pint},
 		{"pop", pop},
 		{"swap", swap},
-		{"add", add}
+		{"add", add},
+		{"nop", NULL}
 	};
 	stack_t *stack = NULL;
 	int opSize = sizeof(ops) / sizeof(ops[0]);
@@ -39,7 +40,8 @@ void interpreter(data_t *data)
 			{
 				if (!strcmp(ops[i].opcode, data->cmd[0]))
 				{
-					ops[i].f(&stack, j, data);
+					if (ops[i].f)
+						ops[i].f(&stack, j, data);
 					flag = 1;
 					break;
 				}
