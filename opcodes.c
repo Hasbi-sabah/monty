@@ -36,7 +36,7 @@ int _isint(char *str)
 {
 	int i;
 
-	for (i = 0; str[i]; i++)
+	for (i = 0; i < (int)strlen(str); i++)
 	{
 		if (!isdigit(str[i]))
 			return (0);
@@ -83,10 +83,11 @@ void pop_top(data_t *data)
 	}
 	else
 	{
-		tmp = data->stack->next->prev;
-		free(tmp);
-		data->stack->next->prev = NULL;
+		tmp = data->stack->next;
 		data->stack = data->stack->next;
+		free(tmp->prev);
+		tmp->prev = NULL;
+
 	}
 }
 void push(unsigned int line_number, data_t *data)
@@ -182,9 +183,10 @@ void swap(unsigned int line_number, data_t *data)
  */
 void add(unsigned int line_number, data_t *data)
 {
-	int temp;
+	int temp = 0;
 
 	(void) data;
+
 	if (_len(data->stack) < 2)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);

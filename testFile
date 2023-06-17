@@ -1,6 +1,9 @@
-push 10
-push 55
 push 1000
+push 55
+add
+pall
+push 1000
+add
 			pall
    #hello from the other side!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #hi
 pall
