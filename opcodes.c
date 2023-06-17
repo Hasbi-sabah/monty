@@ -12,6 +12,7 @@ void sub(unsigned int line_number, data_t *data);
 void divi(unsigned int line_number, data_t *data);
 void mul(unsigned int line_number, data_t *data);
 void mod(unsigned int line_number, data_t *data);
+void pchar(unsigned int line_number, data_t *data);
 /**
  *
  *
@@ -36,6 +37,8 @@ int _isint(char *str)
 {
 	int i;
 
+	if (str[0] == '-')
+		str++;
 	for (i = 0; str[i]; i++)
 	{
 		if (!isdigit(str[i]))
@@ -288,4 +291,20 @@ void mod(unsigned int line_number, data_t *data)
 	pop_top(data);
 	pop_top(data);
 	add_top(temp, data);
+}
+void pchar(unsigned int line_number, data_t *data)
+{
+	if (data->stack->n < 0 || data->stack->n > 127)
+	{
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
+		freeMemory(data, 1);
+		exit(EXIT_FAILURE);
+	}
+	if (!data->stack)
+	{
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
+		freeMemory(data, 1);
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", data->stack->n);	
 }

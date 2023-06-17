@@ -1,6 +1,4 @@
-push 10
-push 55
-push 1000
-			pall
-   #hello from the other side!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! #hi
-pall
+push -110
+pchar
+push 80000
+pchar
