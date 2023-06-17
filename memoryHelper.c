@@ -1,6 +1,7 @@
 #include "monty.h"
 
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void freeMemory(data_t *data, int end);
 
 /**
  * _realloc - reallocate a memory block
@@ -40,4 +41,36 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	}
 
 	return (p);
+}
+
+/**
+ * freeMemory - free allocated data
+ * @data: data
+ * @end: if the program is about to exit end = 1 to free stack
+ */
+void freeMemory(data_t *data, int end)
+{
+	int i;
+	stack_t *tmp;
+
+	free(data->lineptr);
+	data->lineptr = NULL;
+
+	for (i = 0; i < data->cmdSize; i++)
+		free(data->cmd[i]);
+	free(data->cmd);
+	data->cmd = NULL;
+
+	if (end == 1)
+	{
+		while (data->stack != NULL)
+		{
+			tmp = data->stack->next;
+			free(data->stack);
+			data->stack = NULL;
+			if (tmp != NULL)
+				data->stack = tmp;
+		}
+		data->stack = NULL;
+	}
 }

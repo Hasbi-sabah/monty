@@ -68,7 +68,9 @@ int lineHelper(data_t *data, int rd, int i);
 
 /*************MemoryHandler******/
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+void freeMemory(data_t *data, int end);
 
+/***********opcode_struct********/
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -79,18 +81,19 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 typedef struct instruction_s
 {
 	char *opcode;
-	void (*f)(stack_t **stack, unsigned int line_number, data_t *data);
+	void (*f)(unsigned int line_number, data_t *data);
 } instruction_t;
 
-void push(stack_t **stack, unsigned int line_number, data_t *data);
-void pall(stack_t **stack, unsigned int line_number, data_t *data);
-void pint(stack_t **stack, unsigned int line_number, data_t *data);
-void pop(stack_t **stack, unsigned int line_number, data_t *data);
-void swap(stack_t **stack, unsigned int line_number, data_t *data);
-void add(stack_t **stack, unsigned int line_number, data_t *data);
-void sub(stack_t **stack, unsigned int line_number, data_t *data);
-void divi(stack_t **stack, unsigned int line_number, data_t *data);
-void mul(stack_t **stack, unsigned int line_number, data_t *data);
-void mod(stack_t **stack, unsigned int line_number, data_t *data);
+/***********opcode_functions*****/
+void push(unsigned int line_number, data_t *data);
+void pall(unsigned int line_number, data_t *data);
+void pint(unsigned int line_number, data_t *data);
+void pop(unsigned int line_number, data_t *data);
+void swap(unsigned int line_number, data_t *data);
+void add(unsigned int line_number, data_t *data);
+void sub(unsigned int line_number, data_t *data);
+void divi(unsigned int line_number, data_t *data);
+void mul(unsigned int line_number, data_t *data);
+void mod(unsigned int line_number, data_t *data);
 
 #endif

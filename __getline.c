@@ -59,11 +59,21 @@ int _getLine(data_t *data, int *size, int stream)
  */
 int lineHelper(data_t *data, int rd, int i)
 {
+	stack_t *tmp;
+
 	if (rd == 0)
 	{
 		if (i == 0)
 		{
 			free(data->lineptr);
+			while (data->stack != NULL)
+			{
+				tmp = data->stack->next;
+				free(data->stack);
+				data->stack = NULL;
+				if (tmp != NULL)
+					data->stack = tmp;
+			}
 			exit(errno);
 		}
 		return (0);

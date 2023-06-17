@@ -10,7 +10,6 @@ void interpreter(data_t *data);
 void interpreter(data_t *data)
 {
 	int i, j, rd = 0, size = 0, fd = openFile(data);
-	/*char *lineptr = NULL;*/
 	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},
@@ -25,7 +24,6 @@ void interpreter(data_t *data)
 		{"mod", mod},
 		{"#", NULL}
 	};
-	stack_t *stack = NULL;
 	int opSize = sizeof(ops) / sizeof(ops[0]);
 
 	j = 1;
@@ -47,16 +45,19 @@ void interpreter(data_t *data)
 				if (!strcmp(ops[i].opcode, data->cmd[0]))
 				{
 					if (ops[i].f)
-						ops[i].f(&stack, j, data);
+						ops[i].f(j, data);
 					break;
 				}
 			}
 			if (i == opSize)
 			{
 				fprintf(stderr, "L%d: unknown instruction %s\n", j, data->cmd[0]);
+				freeMemory(data, 1);
 				exit(EXIT_FAILURE);
 			}
 		}
 		j++;
+		freeMemory(data, 0);
 	}
+	  freeMemory(data, 1);
 }
