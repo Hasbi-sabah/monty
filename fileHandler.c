@@ -15,7 +15,7 @@ int openFile(data_t *data)
 	fd_src = open(data->argv[1], O_RDONLY);
 	if (fd_src == -1)
 	{
-		printf("Error: Can't open %s\n", data->argv[1]);
+		fprintf(stderr, "Error: Can't open %s\n", data->argv[1]);
 		/*freeData(data);*/
 		exit(EXIT_FAILURE);
 	}
@@ -34,7 +34,7 @@ void closeFile(data_t *data, int fd)
 	stat = close(fd);
 	if (stat == -1)
 	{
-		printf("Error: Can't close file %s\n", data->argv[1]);
+		fprintf(stderr, "Error: Can't close file %s\n", data->argv[1]);
 		/*freeData(data);*/
 		exit(EXIT_FAILURE);
 	}

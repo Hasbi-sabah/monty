@@ -86,5 +86,6 @@ void push(stack_t **stack, unsigned int line_number, data_t *data);
 void pall(stack_t **stack, unsigned int line_number, data_t *data);
 void pint(stack_t **stack, unsigned int line_number, data_t *data);
 void pop(stack_t **stack, unsigned int line_number, data_t *data);
+void swap(stack_t **stack, unsigned int line_number, data_t *data);
 
 #endif
