@@ -1,3 +1,4 @@
+push 1
 pall
-swap
+add
 pall
