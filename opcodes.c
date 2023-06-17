@@ -11,6 +11,7 @@ void add(stack_t **stack, unsigned int line_number, data_t *data);
 void sub(stack_t **stack, unsigned int line_number, data_t *data);
 void divi(stack_t **stack, unsigned int line_number, data_t *data);
 void mul(stack_t **stack, unsigned int line_number, data_t *data);
+void mod(stack_t **stack, unsigned int line_number, data_t *data);
 /**
  *
  *
@@ -228,6 +229,26 @@ void mul(stack_t **stack, unsigned int line_number, data_t *data)
 		exit(EXIT_FAILURE);
 	}
 	temp = (*stack)->n * (*stack)->next->n;
+	pop_top(stack);
+	pop_top(stack);
+	add_top(stack, temp);
+}
+void mod(stack_t **stack, unsigned int line_number, data_t *data)
+{
+	int temp;
+
+	(void) data;
+	if (_len(*stack) < 2)
+	{
+		fprintf(stderr, "L%u: can't mod, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->n == 0)
+	{
+		fprintf(stderr, "L%u: division by zero\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	temp = (*stack)->next->n % (*stack)->n;
 	pop_top(stack);
 	pop_top(stack);
 	add_top(stack, temp);
