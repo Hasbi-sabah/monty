@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include <errno.h>
 #include <fcntl.h>
+#include <stdarg.h>
 
 #define DELIM " \t\n"
 #define BUFFSIZE 256
@@ -84,5 +85,6 @@ typedef struct instruction_s
 void push(stack_t **stack, unsigned int line_number, data_t *data);
 void pall(stack_t **stack, unsigned int line_number, data_t *data);
 void pint(stack_t **stack, unsigned int line_number, data_t *data);
+void pop(stack_t **stack, unsigned int line_number, data_t *data);
 
 #endif

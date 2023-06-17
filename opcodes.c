@@ -1,5 +1,14 @@
 #include "monty.h"
+#include <stdarg.h>
 
+int _len(stack_t *h)
+{
+	int i;
+
+	for (i = 0; h; h = h->next, i++)
+		;
+	return (i);
+}
 int _isint(char *str)
 {
 	int i;
@@ -17,13 +26,13 @@ void push(stack_t **stack, unsigned int line_number, data_t *data)
 
 	if (data->cmdSize < 2 || !_isint(data->cmd[1]))
 	{
-		dprintf(2, "L%u: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new_node->prev = NULL;
@@ -52,8 +61,24 @@ void pint(stack_t **stack, unsigned int line_number, data_t *data)
 {
 	if (!(*stack))
 	{
-		dprintf(2, "L%u: can't pint, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
+}
+void pop(stack_t **stack, unsigned int line_number, data_t *data)
+{
+	if (!(*stack))
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("(%d) ", _len(*stack));
+	if (_len(*stack) == 1)
+		*stack == NULL;
+	else
+	{
+		(*stack)->next->prev = NULL;
+		(*stack) = (*stack)->next;
+	}
 }

@@ -14,7 +14,8 @@ void interpreter(data_t *data)
 	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},
-		{"pint", pint}
+		{"pint", pint},
+		{"pop", pop}
 	};
 	stack_t *stack = NULL;
 	int opSize = sizeof(ops) / sizeof(ops[0]);
@@ -43,7 +44,7 @@ void interpreter(data_t *data)
 			}
 			if (!flag)
 			{
-				dprintf(2, "L%d: unknown instruction %s\n", j, data->cmd[0]);
+				fprintf(stderr, "L%d: unknown instruction %s\n", j, data->cmd[0]);
 				exit(EXIT_FAILURE);
 			}
 		}
