@@ -62,5 +62,5 @@ void interpreter(data_t *data)
 		j++;
 		freeMemory(data, 0);
 	}
-	  freeMemory(data, 1);
+	/*freeMemory(data, 1);*/
 }

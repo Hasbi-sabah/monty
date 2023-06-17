@@ -66,13 +66,13 @@ int lineHelper(data_t *data, int rd, int i)
 		if (i == 0)
 		{
 			free(data->lineptr);
-			while (data->stack != NULL)
+			while (data->head_s != NULL)
 			{
-				tmp = data->stack->next;
-				free(data->stack);
-				data->stack = NULL;
+				tmp = data->head_s->next;
+				free(data->head_s);
+				data->head_s = NULL;
 				if (tmp != NULL)
-					data->stack = tmp;
+					data->head_s = tmp;
 			}
 			exit(errno);
 		}

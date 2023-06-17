@@ -1,0 +1,6 @@
+push 15
+push 2
+mul 2
+pall
+pstr
+pall

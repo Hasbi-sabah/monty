@@ -34,20 +34,23 @@ typedef struct stack_s
  * @argv: argument vector
  * @cmd: command line tokenized
  * @lineptr: line pointer
- * @stack: stack head
+ * @head: stack head
+ * @tail: stack tail
  * @cmdCounter: command count
  */
 typedef struct data_t
 {
         char **argv;
         char **cmd;
-        stack_t *stack;
+        stack_t *head_s;
+	stack_t *tail_s;
         char *lineptr;
+	int stackSize;
         int cmdSize;
 } data_t;
 
 /*****************main*************/
-void dataInit(data_t *data, char **argv, char **cmd, stack_t *stack);
+void dataInit(data_t *data, char **argv);
 
 /**************interpreter*********/
 void interpreter(data_t *data);
