@@ -14,8 +14,9 @@ void interpreter(data_t *data)
 	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint}
 	};
-	stack_t *stack;
+	stack_t *stack = NULL;
 	int opSize = sizeof(ops) / sizeof(ops[0]);
 
 	j = 1;

@@ -47,3 +47,13 @@ void pall(stack_t **stack, unsigned int line_number, data_t *data)
 	for (i = 0, h = *stack; h; h = h->next, i++)
 		printf("%d\n", h->n);
 }
+
+void pint(stack_t **stack, unsigned int line_number, data_t *data)
+{
+	if (!(*stack))
+	{
+		dprintf(2, "L%u: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}
