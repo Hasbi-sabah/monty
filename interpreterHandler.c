@@ -9,7 +9,7 @@ void interpreter(data_t *data);
  */
 void interpreter(data_t *data)
 {
-	int i, j, flag, rd = 0, size = 0, fd = openFile(data);
+	int i, j, rd = 0, size = 0, fd = openFile(data);
 	/*char *lineptr = NULL;*/
 	instruction_t ops[] = {
 		{"push", push},
@@ -22,7 +22,8 @@ void interpreter(data_t *data)
 		{"sub", sub},
 		{"div", divi},
 		{"mul", mul},
-		{"mod", mod}
+		{"mod", mod},
+		{"#", NULL}
 	};
 	stack_t *stack = NULL;
 	int opSize = sizeof(ops) / sizeof(ops[0]);
@@ -38,19 +39,19 @@ void interpreter(data_t *data)
 		/*check if the tokens > 0*/
 		if (data->cmdSize > 0)
 		{
-			flag = 0;
 			/*call functions */
 			for (i = 0; i < opSize; i++)
 			{
+				if (data->cmd[0][0] == '#')
+					break;
 				if (!strcmp(ops[i].opcode, data->cmd[0]))
 				{
 					if (ops[i].f)
 						ops[i].f(&stack, j, data);
-					flag = 1;
 					break;
 				}
 			}
-			if (!flag)
+			if (i == opSize)
 			{
 				fprintf(stderr, "L%d: unknown instruction %s\n", j, data->cmd[0]);
 				exit(EXIT_FAILURE);
