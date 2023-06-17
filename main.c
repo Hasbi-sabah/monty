@@ -9,9 +9,15 @@ void dataInit( data_t *data, char **argv, char **cmd, stack_t *stack);
  */
 int main(int argc, char **argv)
 {
-	stack_t *stack;
-	char **cmd;
+	stack_t *stack = NULL;
+	char **cmd = NULL;
 	data_t data;
+
+	if (argc != 2)
+	{
+		printf("Usage: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 
 	/* initialize data */
 	dataInit(&data, argv, cmd, stack);

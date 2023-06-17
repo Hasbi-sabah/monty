@@ -53,12 +53,14 @@ void pall(stack_t **stack, unsigned int line_number, data_t *data)
 	int i;
 
 	(void) line_number;
+	(void) data;
 	for (i = 0, h = *stack; h; h = h->next, i++)
 		printf("%d\n", h->n);
 }
 
 void pint(stack_t **stack, unsigned int line_number, data_t *data)
 {
+	(void) data;
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
@@ -68,14 +70,14 @@ void pint(stack_t **stack, unsigned int line_number, data_t *data)
 }
 void pop(stack_t **stack, unsigned int line_number, data_t *data)
 {
+	(void) data;
 	if (!(*stack))
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	printf("(%d) ", _len(*stack));
 	if (_len(*stack) == 1)
-		*stack == NULL;
+		(*stack) = NULL;
 	else
 	{
 		(*stack)->next->prev = NULL;

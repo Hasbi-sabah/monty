@@ -53,7 +53,7 @@ void dataInit(data_t *data, char **argv, char **cmd, stack_t *stack);
 void interpreter(data_t *data);
 
 /**************fileHandler*********/
-size_t openFile(data_t *data);
+int openFile(data_t *data);
 void closeFile(data_t *data, int fd);
 
 /***************_strtok************/
