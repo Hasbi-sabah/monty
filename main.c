@@ -11,12 +11,13 @@ int main(int argc, char **argv)
 {
 	stack_t *stack;
 	char **cmd;
-	data_t *data;
+	data_t data;
 
 	/* initialize data */
-	dataInit(data, argv, cmd, stack);
+	dataInit(&data, argv, cmd, stack);
+
 	/* start the interpreter */
-	interpreter(data);
+	interpreter(&data);
 
 	return (0);
 }

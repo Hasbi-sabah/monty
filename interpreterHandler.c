@@ -16,10 +16,16 @@ void interpreter(data_t *data)
 		{
 			if (rd == 0)
 				continue;
-
+			/* Tokenize the lineptr*/
 			data->cmd = _strtok(data->lineptr, DELIM, &data->cmdSize);
 
-			for (i = 0; i < data->cmdSize; i++)
-				printf("%s\n", data->cmd[i]);
+			/*check if the tokens > 0*/
+			if (data->cmdSize > 0)
+			{
+				/*print tokens */
+				for (i = 0; i < data->cmdSize; i++)
+					printf("%s\n", data->cmd[i]);
+				printf("------------\n");
+			}
 		}
 }
