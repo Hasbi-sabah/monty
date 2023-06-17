@@ -9,23 +9,43 @@ void interpreter(data_t *data);
  */
 void interpreter(data_t *data)
 {
-	int i, rd = 0, size = 0, fd = openFile(data);
+	int i, j, flag, rd = 0, size = 0, fd = openFile(data);
 	char *lineptr = NULL;
+	instruction_t ops[] = {
+		{"push", push},
+		{"pall", pall},
+	};
+	stack_t *stack;
+	int opSize = sizeof(ops) / sizeof(ops[0]);
 
+	j = 1;
 	while ((rd = _getLine(data, &size, fd)) != -1)
-		{
-			if (rd == 0)
-				continue;
-			/* Tokenize the lineptr*/
-			data->cmd = _strtok(data->lineptr, DELIM, &data->cmdSize);
+	{
+		if (rd == 0)
+			continue;
+		/* Tokenize the lineptr*/
+		data->cmd = _strtok(data->lineptr, DELIM, &data->cmdSize);
 
-			/*check if the tokens > 0*/
-			if (data->cmdSize > 0)
+		/*check if the tokens > 0*/
+		if (data->cmdSize > 0)
+		{
+			flag = 0;
+			/*call functions */
+			for (i = 0; i < opSize; i++)
 			{
-				/*print tokens */
-				for (i = 0; i < data->cmdSize; i++)
-					printf("%s\n", data->cmd[i]);
-				printf("------------\n");
+				if (!strcmp(ops[i].opcode, data->cmd[0]))
+				{
+					ops[i].f(&stack, j, data);
+					flag = 1;
+					break;
+				}
+			}
+			if (!flag)
+			{
+				dprintf(2, "L%d: unknown instruction %s\n", j, data->cmd[0]);
+				exit(EXIT_FAILURE);
 			}
 		}
+		j++;
+	}
 }

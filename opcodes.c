@@ -15,15 +15,15 @@ void push(stack_t **stack, unsigned int line_number, data_t *data)
 {
 	stack_t *new_node;
 
-	if (!data->cmdSize < 2 || _isint(data->cmd[1]))
+	if (data->cmdSize < 2 || !_isint(data->cmd[1]))
 	{
-		dprintf(2, "L%u: usage: push integer", line_number);
+		dprintf(2, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		dprintf(2, "Error: malloc failed");
+		dprintf(2, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new_node->prev = NULL;
