@@ -10,7 +10,7 @@ void interpreter(data_t *data);
 void interpreter(data_t *data)
 {
 	int i, j, flag, rd = 0, size = 0, fd = openFile(data);
-	char *lineptr = NULL;
+	/*char *lineptr = NULL;*/
 	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},

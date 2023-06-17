@@ -1,6 +1,6 @@
 #include "monty.h"
 
-size_t openFile(data_t *data);
+int openFile(data_t *data);
 void closeFile(data_t *data, int fd);
 
 /**
@@ -8,9 +8,9 @@ void closeFile(data_t *data, int fd);
  * @data: data holder
  * Return: file descriptor
  */
-size_t openFile(data_t *data)
+int openFile(data_t *data)
 {
-	size_t fd_src;
+	int fd_src;
 
 	fd_src = open(data->argv[1], O_RDONLY);
 	if (fd_src == -1)

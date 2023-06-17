@@ -60,7 +60,7 @@ int countTok(char *str, const char *delim)
 
 	if (str == NULL || delim == NULL)
 		return (0);
-	for (i = 0; i < strlen(str); i++)
+	for (i = 0; i < (int)strlen(str); i++)
 	{
 		if (!isDelim(str[i], delim))
 		{
@@ -101,7 +101,7 @@ int isDelim(char c, const char *delim)
 {
 	int i;
 
-	for (i = 0; i < strlen(delim); i++)
+	for (i = 0; i < (int)strlen(delim); i++)
 	{
 		if (c == delim[i])
 			return (1);
