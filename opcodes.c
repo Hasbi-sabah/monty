@@ -1,6 +1,18 @@
 #include "monty.h"
-#include <stdarg.h>
 
+int _len(stack_t *h);
+int _isint(char *str);
+void push(stack_t **stack, unsigned int line_number, data_t *data);
+void pall(stack_t **stack, unsigned int line_number, data_t *data);
+void pint(stack_t **stack, unsigned int line_number, data_t *data);
+void pop(stack_t **stack, unsigned int line_number, data_t *data);
+void swap(stack_t **stack, unsigned int line_number, data_t *data);
+
+/**
+ *
+ *
+ *
+ */
 int _len(stack_t *h)
 {
 	int i;
@@ -9,6 +21,13 @@ int _len(stack_t *h)
 		;
 	return (i);
 }
+
+/**
+ *
+ *
+ *
+ *
+ */
 int _isint(char *str)
 {
 	int i;
@@ -20,6 +39,13 @@ int _isint(char *str)
 	}
 	return (1);
 }
+
+/**
+ *
+ *
+ *
+ *
+ */
 void push(stack_t **stack, unsigned int line_number, data_t *data)
 {
 	stack_t *new_node;
@@ -47,6 +73,12 @@ void push(stack_t **stack, unsigned int line_number, data_t *data)
 	*stack = new_node;
 }
 
+/**
+ *
+ *
+ *
+ *
+ */
 void pall(stack_t **stack, unsigned int line_number, data_t *data)
 {
 	stack_t *h;
@@ -58,6 +90,12 @@ void pall(stack_t **stack, unsigned int line_number, data_t *data)
 		printf("%d\n", h->n);
 }
 
+/**
+ *
+ *
+ *
+ *
+ */
 void pint(stack_t **stack, unsigned int line_number, data_t *data)
 {
 	(void) data;
@@ -68,6 +106,13 @@ void pint(stack_t **stack, unsigned int line_number, data_t *data)
 	}
 	printf("%d\n", (*stack)->n);
 }
+
+/**
+ *
+ *
+ *
+ *
+ */
 void pop(stack_t **stack, unsigned int line_number, data_t *data)
 {
 	(void) data;
@@ -84,6 +129,13 @@ void pop(stack_t **stack, unsigned int line_number, data_t *data)
 		(*stack) = (*stack)->next;
 	}
 }
+
+/**
+ *
+ *
+ *
+ *
+ */
 void swap(stack_t **stack, unsigned int line_number, data_t *data)
 {
 	int temp;
