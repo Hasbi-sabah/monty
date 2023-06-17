@@ -1,5 +1,16 @@
 #ifndef MONTY_H
 #define MONTY_H
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <errno.h>
+#include <fcntl.h>
+
+#define DELIM " \t\n"
+#define BUFFSIZE 256
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -27,4 +38,46 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/*******data_struct***************/
+/**
+ * data - struct holding program's data
+ * @argv: argument vector
+ * @cmd: command line tokenized
+ * @lineptr: line pointer
+ * @stack: stack head
+ * @cmdCounter: command count
+ */
+typedef struct data_t
+{
+        char **argv;
+        char **cmd;
+        stack_t *stack;
+        char *lineptr;
+        int cmdSize;
+} data_t;
+
+/*****************main*************/
+void dataInit( data_t *data, char **argv, char **cmd, stack_t *stack);
+
+/**************interpreter*********/
+void interpreter(data_t *data);
+
+/**************fileHandler*********/
+size_t openFile(data_t *data);
+void closeFile(data_t *data, int fd);
+
+/***************_strtok************/
+char **_strtok(char *str, const char *delim, int *size);
+int countTok(char *str, const char *delim);
+int tokLen(char *str, const char *delim, int index);
+int isDelim(char c, const char *delim);
+
+/**************getline************/
+int _getLine(data_t *data, int *size, int stream);
+int lineHelper(data_t *data, int rd, int i);
+
+/*************MemoryHandler******/
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+
 #endif
