@@ -3,12 +3,12 @@
 
 #include <ctype.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 #define DELIM " \t\n"
 #define BUFFSIZE 256
@@ -89,5 +89,6 @@ void pop(stack_t **stack, unsigned int line_number, data_t *data);
 void swap(stack_t **stack, unsigned int line_number, data_t *data);
 void add(stack_t **stack, unsigned int line_number, data_t *data);
 void sub(stack_t **stack, unsigned int line_number, data_t *data);
+void divi(stack_t **stack, unsigned int line_number, data_t *data);
 
 #endif
