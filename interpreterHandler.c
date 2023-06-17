@@ -23,7 +23,9 @@ void interpreter(data_t *data)
 		{"mul", mul},
 		{"mod", mod},
 		{"pchar", pchar},
-		{"pstr", pstr}
+		{"pstr", pstr},
+		{"rotl", rotl},
+		{"rotr", rotr}
 	};
 	int opSize = sizeof(ops) / sizeof(ops[0]);
 

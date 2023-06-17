@@ -14,6 +14,8 @@ void mul(unsigned int line_number, data_t *data);
 void mod(unsigned int line_number, data_t *data);
 void pchar(unsigned int line_number, data_t *data);
 void pstr(unsigned int line_number, data_t *data);
+void rotl(unsigned int line_number, data_t *data);
+void rotr(unsigned int line_number, data_t *data);
 /**
  *
  *
@@ -40,7 +42,7 @@ int _isint(char *str)
 
 	if (str[0] == '-')
 		str++;
-	for (i = 0; str[i]; i++)
+	for (i = 0; i < (int)strlen(str); i++)
 	{
 		if (!isdigit(str[i]))
 			return (0);
@@ -87,10 +89,11 @@ void pop_top(data_t *data)
 	}
 	else
 	{
-		tmp = data->stack->next->prev;
-		free(tmp);
-		data->stack->next->prev = NULL;
+		tmp = data->stack->next;
 		data->stack = data->stack->next;
+		free(tmp->prev);
+		tmp->prev = NULL;
+
 	}
 }
 void push(unsigned int line_number, data_t *data)
@@ -186,9 +189,10 @@ void swap(unsigned int line_number, data_t *data)
  */
 void add(unsigned int line_number, data_t *data)
 {
-	int temp;
+	int temp = 0;
 
 	(void) data;
+
 	if (_len(data->stack) < 2)
 	{
 		fprintf(stderr, "L%u: can't add, stack too short\n", line_number);
@@ -294,15 +298,15 @@ void mod(unsigned int line_number, data_t *data)
 }
 void pchar(unsigned int line_number, data_t *data)
 {
-	if (data->stack->n < 0 || data->stack->n > 127)
+	if (!_len(data->stack))
 	{
-		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
 		freeMemory(data, 1);
 		exit(EXIT_FAILURE);
 	}
-	if (!data->stack)
+	if (data->stack->n < 0 || data->stack->n > 127)
 	{
-		fprintf(stderr, "L%u: can't pchar, stack empty\n", line_number);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		freeMemory(data, 1);
 		exit(EXIT_FAILURE);
 	}
@@ -320,4 +324,32 @@ void pstr(unsigned int line_number, data_t *data)
 		printf("%c", h->n);
 	}
 	printf("\n");
+}
+void rotl(unsigned int line_number, data_t *data)
+{
+	stack_t *h;
+
+	(void) line_number;
+	if (_len(data->stack) < 2)
+		return;
+	for (h = data->stack; h->next; h = h->next)
+		;
+	data->stack->prev = h;
+	h->next = data->stack;
+	data->stack = data->stack->next;
+	h->next->next = NULL;
+}
+void rotr(unsigned int line_number, data_t *data)
+{
+	stack_t *h;
+
+	(void) line_number;
+	if (_len(data->stack) < 2)
+		return;
+	for (h = data->stack; h->next; h = h->next)
+		;
+	h->next = data->stack;
+	h->prev->next = NULL;
+	h->prev = NULL;
+	data->stack = h;
 }
