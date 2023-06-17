@@ -18,7 +18,8 @@ void interpreter(data_t *data)
 		{"pop", pop},
 		{"swap", swap},
 		{"add", add},
-		{"nop", NULL}
+		{"nop", NULL},
+		{"sub", sub}
 	};
 	stack_t *stack = NULL;
 	int opSize = sizeof(ops) / sizeof(ops[0]);

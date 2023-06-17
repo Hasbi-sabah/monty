@@ -1,4 +1,10 @@
 push 1
+push 2
+push 10
 pall
-nop
+sub
 pall
+add
+pall
+sub
+sub

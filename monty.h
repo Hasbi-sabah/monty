@@ -88,5 +88,6 @@ void pint(stack_t **stack, unsigned int line_number, data_t *data);
 void pop(stack_t **stack, unsigned int line_number, data_t *data);
 void swap(stack_t **stack, unsigned int line_number, data_t *data);
 void add(stack_t **stack, unsigned int line_number, data_t *data);
+void sub(stack_t **stack, unsigned int line_number, data_t *data);
 
 #endif
