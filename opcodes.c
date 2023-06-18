@@ -70,8 +70,11 @@ void add_top(int n, data_t *data, int mode)
 	}
 	new_node->prev = NULL;
 	new_node->n = n;
-	if (!data->head_s)
-		new_node->next = NULL;
+	if (data->stackSize == 0)
+	{
+		data->head_s = new_node;
+		data->tail_s = new_node;
+	}
 	else
 	{
                 if (mode == 0)
@@ -87,11 +90,6 @@ void add_top(int n, data_t *data, int mode)
 			data->tail_s = new_node;
 			data->tail_s->next = NULL;
 		}
-	}
-	if (data->stackSize == 0)
-	{
-		data->head_s = new_node;
-		data->tail_s = new_node;
 	}
 	data->stackSize++;
 }
