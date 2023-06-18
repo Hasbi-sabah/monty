@@ -65,7 +65,7 @@ void freeMemory(data_t *data, int end)
 	{
 		while (data->head_s != NULL)
 		{
-			tmp = data->head_s->prev;
+			tmp = data->head_s->next;
 			free(data->head_s);
 			data->head_s = NULL;
 			if (tmp != NULL)

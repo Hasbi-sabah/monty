@@ -339,7 +339,7 @@ void pstr(unsigned int line_number, data_t *data)
 }
 
 /**
- *
+ * rotl - rotate the stack to the left (top to bottom)
  *
  *
  */
@@ -350,11 +350,13 @@ void rotl(unsigned int line_number, data_t *data)
 	(void) line_number;
 	if (data->stackSize < 2)
 		return;
-	for (h = data->head_s; h->next; h = h->next)
-		;
+
+
+	h = data->tail_s;
 	data->head_s->prev = h;
 	h->next = data->head_s;
 	data->head_s = data->head_s->next;
+	data->tail_s = data->tail_s->next;
 	h->next->next = NULL;
 }
 void rotr(unsigned int line_number, data_t *data)
@@ -364,8 +366,9 @@ void rotr(unsigned int line_number, data_t *data)
 	(void) line_number;
 	if (data->stackSize < 2)
 		return;
-	for (h = data->head_s; h->next; h = h->next)
-		;
+
+	h = data->tail_s;
+	data->tail_s = data->tail_s->prev;
 	h->next = data->head_s;
 	h->prev->next = NULL;
 	h->prev = NULL;
