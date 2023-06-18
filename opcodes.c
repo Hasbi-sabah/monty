@@ -57,7 +57,7 @@ int _isint(char *str)
  *
  *
  */
-void add_top(int n, data_t *data)
+void add_top(int n, data_t *data, int mode)
 {
 	stack_t *new_node;
 
@@ -74,15 +74,28 @@ void add_top(int n, data_t *data)
 		new_node->next = NULL;
 	else
 	{
-		new_node->next = data->head_s;
-		data->head_s->prev = new_node;
+                if (mode == 0)
+                {
+			new_node->next = data->head_s;
+			data->head_s->prev = new_node;
+			data->head_s = new_node;
+		}
+		else
+		{
+			data->tail_s->next = new_node;
+			new_node->prev = data->tail_s;
+			data->tail_s = new_node;
+			data->tail_s->next = NULL;
+		}
 	}
 	if (data->stackSize == 0)
+	{
+		data->head_s = new_node;
 		data->tail_s = new_node;
-	data->head_s = new_node;
+	}
 	data->stackSize++;
 }
-void pop_top(data_t *data)
+void pop_top(data_t *data, int mode)
 {
 	stack_t *tmp;
 
@@ -96,7 +109,7 @@ void pop_top(data_t *data)
 	else
 	{
 		/* check if stack format is LIFO or FIFO*/
-		if (data->stackMode == 1)
+		if (mode == 1)
 		{
 			tmp = data->tail_s;
 			data->tail_s = tmp->prev;
@@ -121,7 +134,7 @@ void push(unsigned int line_number, data_t *data)
 		freeMemory(data, 1);
 		exit(EXIT_FAILURE);
 	}
-	add_top(atoi(data->cmd[1]), data);
+	add_top(atoi(data->cmd[1]), data, data->stackMode);
 }
 
 /**
@@ -136,18 +149,19 @@ void pall(unsigned int line_number, data_t *data)
 
 	(void) line_number;
 	/* check if stack format is LIFO or FIFO*/
-	if (data->stackMode == 1)
+	/*if (data->stackMode == 1)
 		h = data->tail_s;
-	else
-		h = data->head_s;
+	else*/
+	h = data->head_s;
 
+	/*printf("h=[%d] t=[%d]\n", data->head_s->n, data->tail_s->n);*/
 	while (h)
 	{
 		printf("%d\n", h->n);
-		if (data->stackMode == 1)
+		/*if (data->stackMode == 1)
 			h = h->prev;
-		else
-			h = h->next;
+		else*/
+		h = h->next;
 	}
 }
 
@@ -189,7 +203,7 @@ void pop(unsigned int line_number, data_t *data)
 		freeMemory(data, 1);
 		exit(EXIT_FAILURE);
 	}
-	pop_top(data);
+	pop_top(data, data->stackMode);
 }
 
 /**
@@ -229,9 +243,9 @@ void add(unsigned int line_number, data_t *data)
 		exit(EXIT_FAILURE);
 	}
 	temp = data->head_s->n + data->head_s->next->n;
-	pop_top(data);
-	pop_top(data);
-	add_top(temp, data);
+	pop_top(data, 0);
+	pop_top(data, 0);
+	add_top(temp, data, 0);
 }
 void sub(unsigned int line_number, data_t *data)
 {
@@ -244,9 +258,9 @@ void sub(unsigned int line_number, data_t *data)
 		exit(EXIT_FAILURE);
 	}
 	temp = data->head_s->n - data->head_s->next->n;
-	pop_top(data);
-	pop_top(data);
-	add_top(temp, data);
+	pop_top(data, 0);
+	pop_top(data, 0);
+	add_top(temp, data, 0);
 }
 
 /**
@@ -270,9 +284,9 @@ void divi(unsigned int line_number, data_t *data)
 		exit(EXIT_FAILURE);
 	}
 	temp = data->head_s->next->n / data->head_s->n;
-	pop_top(data);
-	pop_top(data);
-	add_top(temp, data);
+	pop_top(data, 0);
+	pop_top(data, 0);
+	add_top(temp, data, 0);
 }
 
 /**
@@ -291,9 +305,9 @@ void mul(unsigned int line_number, data_t *data)
 		exit(EXIT_FAILURE);
 	}
 	temp = data->head_s->n * data->head_s->next->n;
-	pop_top(data);
-	pop_top(data);
-	add_top(temp, data);
+	pop_top(data, 0);
+	pop_top(data, 0);
+	add_top(temp, data, 0);
 }
 
 /**
@@ -318,9 +332,9 @@ void mod(unsigned int line_number, data_t *data)
 		exit(EXIT_FAILURE);
 	}
 	temp = data->head_s->next->n % data->head_s->n;
-	pop_top(data);
-	pop_top(data);
-	add_top(temp, data);
+	pop_top(data, 0);
+	pop_top(data, 0);
+	add_top(temp, data, 0);
 }
 
 /**
