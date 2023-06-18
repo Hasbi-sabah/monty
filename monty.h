@@ -11,7 +11,7 @@
 #include <stdlib.h>
 
 #define DELIM " \t\n"
-#define BUFFSIZE 256
+#define BUFFSIZE 128
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -33,9 +33,11 @@ typedef struct stack_s
  * data - struct holding program's data
  * @argv: argument vector
  * @cmd: command line tokenized
+ * @head_s: stack head
+ * @tail_s: stack tail
  * @lineptr: line pointer
- * @head: stack head
- * @tail: stack tail
+ * @stacksize: stack size (number of elements)
+ * @stackmode: stack mode (stack = 0 or queue = 1)
  * @cmdCounter: command count
  */
 typedef struct data_t
@@ -46,6 +48,7 @@ typedef struct data_t
 	stack_t *tail_s;
         char *lineptr;
 	int stackSize;
+	int stackMode;
         int cmdSize;
 } data_t;
 
@@ -54,6 +57,7 @@ void dataInit(data_t *data, char **argv);
 
 /**************interpreter*********/
 void interpreter(data_t *data);
+void opHandler(data_t *data, int idx);
 
 /**************fileHandler*********/
 int openFile(data_t *data);
@@ -102,5 +106,6 @@ void pchar(unsigned int line_number, data_t *data);
 void pstr(unsigned int line_number, data_t *data);
 void rotl(unsigned int line_number, data_t *data);
 void rotr(unsigned int line_number, data_t *data);
-
+void stack(unsigned int line_number, data_t *data);
+void queue(unsigned int line_number, data_t *data);
 #endif

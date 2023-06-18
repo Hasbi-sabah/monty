@@ -39,5 +39,6 @@ void dataInit( data_t *data, char **argv)
 	data->tail_s = NULL;
 	data->lineptr = NULL;
 	data->stackSize = 0;
+	data->stackMode = 0;
 	data->cmdSize = 0;
 }

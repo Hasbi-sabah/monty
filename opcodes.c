@@ -16,6 +16,7 @@ void pchar(unsigned int line_number, data_t *data);
 void pstr(unsigned int line_number, data_t *data);
 void rotl(unsigned int line_number, data_t *data);
 void rotr(unsigned int line_number, data_t *data);
+
 /**
  *
  *
@@ -94,12 +95,22 @@ void pop_top(data_t *data)
 	}
 	else
 	{
-		tmp = data->head_s->next;
-		data->head_s = data->head_s->next;
-		free(tmp->prev);
-		tmp->prev = NULL;
+		/* check if stack format is LIFO or FIFO*/
+		if (data->stackMode == 1)
+		{
+			tmp = data->tail_s;
+			data->tail_s = tmp->prev;
+			data->tail_s->next = NULL;
+			free(tmp);
+		}
+		else
+		{
+			tmp = data->head_s->next;
+			data->head_s = data->head_s->next;
+			free(tmp->prev);
+			tmp->prev = NULL;
+		}
 		data->stackSize--;
-
 	}
 }
 void push(unsigned int line_number, data_t *data)
@@ -122,12 +133,22 @@ void push(unsigned int line_number, data_t *data)
 void pall(unsigned int line_number, data_t *data)
 {
 	stack_t *h;
-	int i;
 
 	(void) line_number;
-	(void) data;
-	for (i = 0, h = data->head_s; h; h = h->next, i++)
+	/* check if stack format is LIFO or FIFO*/
+	if (data->stackMode == 1)
+		h = data->tail_s;
+	else
+		h = data->head_s;
+
+	while (h)
+	{
 		printf("%d\n", h->n);
+		if (data->stackMode == 1)
+			h = h->prev;
+		else
+			h = h->next;
+	}
 }
 
 /**
@@ -138,14 +159,20 @@ void pall(unsigned int line_number, data_t *data)
  */
 void pint(unsigned int line_number, data_t *data)
 {
-	(void) data;
+	stack_t *h;
+
 	if (!data->head_s)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_number);
 		freeMemory(data, 1);
 		exit(EXIT_FAILURE);
 	}
-	printf("%d\n", data->head_s->n);
+	/* check if stack format is LIFO or FIFO*/
+        if (data->stackMode == 1)
+                h = data->tail_s;
+        else
+                h = data->head_s;
+	printf("%d\n", h->n);
 }
 
 /**
@@ -156,7 +183,6 @@ void pint(unsigned int line_number, data_t *data)
  */
 void pop(unsigned int line_number, data_t *data)
 {
-	(void) data;
 	if (!data->head_s)
 	{
 		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
@@ -359,6 +385,12 @@ void rotl(unsigned int line_number, data_t *data)
 	data->tail_s = data->tail_s->next;
 	h->next->next = NULL;
 }
+
+/**
+ *
+ *
+ *
+ */
 void rotr(unsigned int line_number, data_t *data)
 {
 	stack_t *h;
@@ -373,4 +405,26 @@ void rotr(unsigned int line_number, data_t *data)
 	h->prev->next = NULL;
 	h->prev = NULL;
 	data->head_s = h;
+}
+
+/**
+ * stack - set the stack format to LIFO
+ * @line_number: line number
+ * @data: data
+ */
+void stack(unsigned int line_number, data_t *data)
+{
+	(void)line_number;
+	data->stackMode = 0;
+}
+
+/**
+ * queue - set the stack format to FIFO
+ * @line_number: line number
+ * @data: data
+ */
+void queue(unsigned int line_number, data_t *data)
+{
+        (void)line_number;
+        data->stackMode = 1;
 }
