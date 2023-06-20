@@ -26,20 +26,20 @@ output:
 ```
 
 ### Monty Bytecode Instructions
-**push <int>**: Pushes an integer onto the stack.
-**pall**: Prints all the values on the stack, starting from the top.
-**pint**: Prints the value at the top of the stack.
-**pop**: Removes the top element of the stack.
-**swap**: Swaps the top two elements of the stack.
-**add**: Adds the top two elements of the stack.
-**nop**: Does nothing.
-**sub**: Subtracts the top element of the stack from the second element.
-**div**: Divides the second element of the stack by the top element.
-**mul**: Multiplies the top two elements of the stack.
-**mod**: Computes the modulo of the second element of the stack by the top element.
-**pchar**: Prints the ASCII character represented by the top element of the stack.
-**pstr**: Prints the string contained in the stack.
-**rotl**: Rotates the stack to the top.
-**rotr**: Rotates the stack to the bottom.
-**stack**: Sets the format of the data to a stack (default behavior).
-**queue**: Sets the format of the data to a queue.
+* **push <int>**: Pushes an integer onto the stack.
+* **pall**: Prints all the values on the stack, starting from the top.
+* **pint**: Prints the value at the top of the stack.
+* **pop**: Removes the top element of the stack.
+* **swap**: Swaps the top two elements of the stack.
+* **add**: Adds the top two elements of the stack.
+* **nop**: Does nothing.
+* **sub**: Subtracts the top element of the stack from the second element.
+* **div**: Divides the second element of the stack by the top element.
+* **mul**: Multiplies the top two elements of the stack.
+* **mod**: Computes the modulo of the second element of the stack by the top element.
+* **pchar**: Prints the ASCII character represented by the top element of the stack.
+* **pstr**: Prints the string contained in the stack.
+* **rotl**: Rotates the stack to the top.
+* **rotr**: Rotates the stack to the bottom.
+* **stack**: Sets the format of the data to a stack (default behavior).
+* **queue**: Sets the format of the data to a queue.
