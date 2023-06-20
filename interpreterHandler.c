@@ -5,8 +5,7 @@ void opHandler(data_t *data, int j);
 
 /**
  * interpreter - read the file and handle the commands
- *
- *
+ * @data: data
  */
 void interpreter(data_t *data)
 {
@@ -24,7 +23,7 @@ void interpreter(data_t *data)
 		if (data->cmdSize > 0)
 		{
 			/*call opcode function handler */
-		        opHandler(data, lnum);
+			opHandler(data, lnum);
 		}
 		lnum++;
 		freeMemory(data, 0);
@@ -49,7 +48,7 @@ void opHandler(data_t *data, int lnum)
 		{"rotl", rotl}, {"rotr", rotr},
 		{"stack", stack}, {"sub", sub},
 		{"swap", swap},
-        };
+	};
 	int mid, lo = 0, hi = sizeof(ops) / sizeof(ops[0]);
 
 	while (lo <= hi)

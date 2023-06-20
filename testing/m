@@ -1,0 +1,7 @@
+queue
+push 10
+push 20
+push 30
+pint
+stack
+pint
