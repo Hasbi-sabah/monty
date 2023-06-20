@@ -59,7 +59,7 @@ void divi(unsigned int line_number, data_t *data)
 
 	if (data->stackSize < 2)
 	{
-		fprintf(stderr, "L%u: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%u: can't div, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	if (data->head_s->n == 0)
