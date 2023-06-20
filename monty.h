@@ -30,26 +30,26 @@ typedef struct stack_s
 
 /*******data_struct***************/
 /**
- * data - struct holding program's data
+ * struct data_t - struct holding program's data
  * @argv: argument vector
- * @cmd: command line tokenized
+ * @cmd: command array
  * @head_s: stack head
  * @tail_s: stack tail
  * @lineptr: line pointer
- * @stacksize: stack size (number of elements)
- * @stackmode: stack mode (stack = 0 or queue = 1)
- * @cmdCounter: command count
+ * @stackSize: stack size (number of elements)
+ * @stackMode: stack mode (stack = 0 or queue = 1)
+ * @cmdSize: command size (number of elements in cmd)
  */
 typedef struct data_t
 {
-        char **argv;
-        char **cmd;
-        stack_t *head_s;
+	char **argv;
+	char **cmd;
+	stack_t *head_s;
 	stack_t *tail_s;
-        char *lineptr;
+	char *lineptr;
 	int stackSize;
 	int stackMode;
-        int cmdSize;
+	int cmdSize;
 } data_t;
 
 /*****************main*************/
@@ -92,20 +92,27 @@ typedef struct instruction_s
 } instruction_t;
 
 /***********opcode_functions*****/
+/*opcodeOps*/
 void push(unsigned int line_number, data_t *data);
 void pall(unsigned int line_number, data_t *data);
 void pint(unsigned int line_number, data_t *data);
+void pchar(unsigned int line_number, data_t *data);
+void pstr(unsigned int line_number, data_t *data);
+/*opcodeManipulation*/
+void add_top(int n, data_t *data, int mode);
+void pop_top(data_t *data, int mode);
 void pop(unsigned int line_number, data_t *data);
 void swap(unsigned int line_number, data_t *data);
+/*opcodeMaths*/
 void add(unsigned int line_number, data_t *data);
 void sub(unsigned int line_number, data_t *data);
 void divi(unsigned int line_number, data_t *data);
 void mul(unsigned int line_number, data_t *data);
 void mod(unsigned int line_number, data_t *data);
-void pchar(unsigned int line_number, data_t *data);
-void pstr(unsigned int line_number, data_t *data);
-void rotl(unsigned int line_number, data_t *data);
-void rotr(unsigned int line_number, data_t *data);
+/*opcodeUtils*/
 void stack(unsigned int line_number, data_t *data);
 void queue(unsigned int line_number, data_t *data);
+void rotl(unsigned int line_number, data_t *data);
+void rotr(unsigned int line_number, data_t *data);
+int _isint(char *str);
 #endif

@@ -1,11 +1,12 @@
 #include "monty.h"
 
-void dataInit( data_t *data, char **argv);
+void dataInit(data_t *data, char **argv);
 
 /**
  * main - monty interpreter
- *
- *
+ * @argc: argument count
+ * @argv: argument vector
+ * Return: 0 (success)
  */
 int main(int argc, char **argv)
 {
@@ -31,7 +32,7 @@ int main(int argc, char **argv)
  * @data: data struct
  * @argv: argument vector
  */
-void dataInit( data_t *data, char **argv)
+void dataInit(data_t *data, char **argv)
 {
 	data->argv = argv;
 	data->cmd = NULL;
