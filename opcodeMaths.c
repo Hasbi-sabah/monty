@@ -42,7 +42,7 @@ void sub(unsigned int line_number, data_t *data)
 		freeMemory(data, 1);
 		exit(EXIT_FAILURE);
 	}
-	temp = data->head_s->n - data->head_s->next->n;
+	temp = data->head_s->next->n - data->head_s->n;
 	pop_top(data, 0);
 	pop_top(data, 0);
 	add_top(temp, data, 0);

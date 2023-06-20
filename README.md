@@ -43,4 +43,3 @@ output:
 **rotr**: Rotates the stack to the bottom.
 **stack**: Sets the format of the data to a stack (default behavior).
 **queue**: Sets the format of the data to a queue.
-
