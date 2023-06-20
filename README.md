@@ -1,5 +1,20 @@
 # 0x19. C - Stacks, Queues - LIFO, FIFO
 
+This project is a Monty Bytecode Interpreter is a project that allows you to interpret files
+written in Monty Bytecode.
+Monty is a simple programming language that utilizes a stack data structure for its operations.
+This interpreter allows you to interpret the Monty bytecode file by specifying it as an argument.
+
+## Usage
+First you need to compile the project use this command to acheive that:
+```
+gcc *.c -o monty
+```
+To run the interpreter, execute the compiled binary and specify a Monty bytecode file as argument:
+```
+./monty [filename]
+```
+
 ## The Monty language
 Monty 0.98 is a scripting language that is first compiled into Monty byte codes (Just like Python).
 It relies on a unique stack, with specific instructions to manipulate it.
@@ -16,7 +31,6 @@ push 1
 push 2
 push 3
 pall
-julien@ubuntu:~/monty$
 ```
 ```
 output:
