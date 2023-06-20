@@ -24,7 +24,10 @@ char **_strtok(char *str, const char *delim, int *size)
 		return (NULL);
 	arrtok = malloc(sizeof(char *) * (*size + 1));
 	if (arrtok == NULL)
-		return (NULL);
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 	for (i = 0; i < *size; i++)
 	{
 		while (isDelim(str[j], delim))
@@ -34,10 +37,9 @@ char **_strtok(char *str, const char *delim, int *size)
 		arrtok[i] = malloc(sizeof(char) * (toklen + 1));
 		if (arrtok[i] == NULL)
 		{
-			/*freeSarray(arrtok, *size);*/
-			return (NULL);
+			fprintf(stderr, "Error: malloc failed\n");
+			exit(EXIT_FAILURE);
 		}
-
 		for (k = 0; k < toklen; k++)
 		{
 			arrtok[i][k] = str[j];
