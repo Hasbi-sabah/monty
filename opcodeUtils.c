@@ -35,15 +35,20 @@ void queue(unsigned int line_number, data_t *data)
  */
 int _isint(char *str)
 {
-	int i;
+	int i, flag = 0;
 
 	if (str[0] == '-' || str[0] == '+')
+	{
+		flag = 1;
 		str++;
+	}
 	for (i = 0; i < (int)strlen(str); i++)
 	{
 		if (!isdigit(str[i]))
 			return (0);
 	}
+	if (flag == 1 && i == 0)
+		return (0);
 	return (1);
 }
 
