@@ -57,3 +57,7 @@ output:
 * **rotr**: Rotates the stack to the bottom.
 * **stack**: Sets the format of the data to a stack (default behavior).
 * **queue**: Sets the format of the data to a queue.
+
+## AUTHORS
+[Sabah HASBI](https://github.com/Hasbi-sabah "Sabah")
+[Abdessamad EL FADILI](https://github.com/elfadili-ae "[^_^]")
