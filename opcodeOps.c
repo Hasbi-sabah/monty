@@ -56,10 +56,7 @@ void pint(unsigned int line_number, data_t *data)
 		freeMemory(data, 1);
 		exit(EXIT_FAILURE);
 	}
-	/* check if stack format is LIFO or FIFO*/
-	/*if (data->stackMode == 1)
-	  h = data->tail_s;
-	  else*/
+
 	h = data->head_s;
 	printf("%d\n", h->n);
 }
