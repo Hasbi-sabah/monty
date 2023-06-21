@@ -59,5 +59,5 @@ output:
 * **queue**: Sets the format of the data to a queue.
 
 ## AUTHORS
-[Sabah HASBI](https://github.com/Hasbi-sabah "Sabah")
-[Abdessamad EL FADILI](https://github.com/elfadili-ae "[^_^]")
+- [Sabah HASBI](https://github.com/Hasbi-sabah "Sabah")
+- [Abdessamad EL FADILI](https://github.com/elfadili-ae "[^_^]")
