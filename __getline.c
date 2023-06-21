@@ -26,7 +26,8 @@ int _getLine(data_t *data, int *size, int stream)
 			if (tmp == NULL)
 			{
 				free(data->lineptr), data->lineptr = NULL;
-				return (-1);
+				fprintf(stderr, "Error: malloc failed\n");
+				exit(EXIT_FAILURE);
 			} data->lineptr = tmp;
 		} fflush(stdout);
 		rd = read(stream, &c, 1);
@@ -59,13 +60,14 @@ int _getLine(data_t *data, int *size, int stream)
  */
 int lineHelper(data_t *data, int rd, int i)
 {
-	stack_t *tmp;
+	stack_t *tmp = NULL;
 
 	if (rd == 0)
 	{
 		if (i == 0)
 		{
 			free(data->lineptr);
+			data->lineptr = NULL;
 			while (data->head_s != NULL)
 			{
 				tmp = data->head_s->next;
@@ -74,7 +76,7 @@ int lineHelper(data_t *data, int rd, int i)
 				if (tmp != NULL)
 					data->head_s = tmp;
 			}
-			exit(errno);
+			exit(0);
 		}
 		return (0);
 	}
