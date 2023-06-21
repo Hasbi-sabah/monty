@@ -37,7 +37,7 @@ int _isint(char *str)
 {
 	int i;
 
-	if (str[0] == '-')
+	if (str[0] == '-' || str[0] == '+')
 		str++;
 	for (i = 0; i < (int)strlen(str); i++)
 	{
