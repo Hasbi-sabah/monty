@@ -28,7 +28,6 @@ void interpreter(data_t *data)
 		lnum++;
 		freeMemory(data, 0);
 	}
-	/*freeMemory(data, 1);*/
 }
 
 /**
