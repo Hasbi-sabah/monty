@@ -23,6 +23,7 @@ void add_top(int n, data_t *data, int mode)
 		exit(EXIT_FAILURE);
 	}
 	new_node->prev = NULL;
+	new_node->next = NULL;
 	new_node->n = n;
 	if (data->stackSize == 0)
 	{
