@@ -10,10 +10,13 @@ void closeFile(data_t *data, int fd);
  */
 int openFile(data_t *data)
 {
+	struct stat fileStat;
 	int fd_src;
 
 	fd_src = open(data->argv[1], O_RDONLY);
-	if (fd_src == -1)
+
+	if (fstat(fd_src, &fileStat) == -1 || fd_src == -1
+	    || !S_ISREG(fileStat.st_mode))
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", data->argv[1]);
 		exit(EXIT_FAILURE);
