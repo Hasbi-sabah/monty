@@ -1,4 +1,7 @@
 # 0x19. C - Stacks, Queues - LIFO, FIFO
+<p align="center">
+ <img src="https://github.com/Hasbi-sabah/monty/assets/105720445/56a91d5a-deef-4dc8-8d80-1e2ca1761e78">
+</p>
 
 This project is a Monty Bytecode Interpreter is a project that allows you to interpret files
 written in Monty Bytecode.
